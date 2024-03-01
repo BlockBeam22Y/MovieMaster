@@ -1,5 +1,62 @@
+function createMovieRate(movie) {
+    const { rate } = movie;
+    
+    const rateContainer = document.createElement('div');
+    rateContainer.classList.add('movie-rate');
+
+    const rateLabel = document.createElement('p');
+    rateLabel.innerHTML = `${rate}/10`;
+    rateLabel.classList.add('rate-label');
+    rateContainer.appendChild(rateLabel);
+
+    const rateBar = document.createElement('div');
+    rateBar.classList.add('rate-bar');
+
+    const rateBarContent = document.createElement('div');
+    rateBarContent.style.width = `${10 * rate}%`;
+
+    if (rate < 5) {
+        rateBarContent.style.backgroundColor = 'red';
+    } else if (rate < 7.5) {
+        rateBarContent.style.backgroundColor = 'yellow';
+    } else {
+        rateBarContent.style.backgroundColor = 'green';
+    }
+
+    rateBarContent.classList.add('bar-content');
+    rateBar.appendChild(rateBarContent);
+
+    rateContainer.appendChild(rateBar);
+    
+    return rateContainer;
+}
+
+function createMovieFooter(movie) {
+    const { director, duration, genre, rate } = movie;
+
+    const cardFooter = document.createElement('div');
+    cardFooter.classList.add('movie-footer');
+
+    const cardDirector = document.createElement('p');
+    cardDirector.innerHTML = `Director: ${director}`;
+    cardDirector.classList.add('movie-director');
+    cardFooter.appendChild(cardDirector);
+
+    const cardDuration = document.createElement('p');
+    cardDuration.innerHTML = `Duración: ${duration}`;
+    cardDuration.classList.add('movie-duration');
+    cardFooter.appendChild(cardDuration);
+
+    const cardGenre = document.createElement('p');
+    cardGenre.innerHTML = `Géneros: ${genre.join(', ')}`;
+    cardGenre.classList.add('movie-genre');
+    cardFooter.appendChild(cardGenre);
+
+    return cardFooter;
+}
+
 function createMovieCard(movie) {
-    const { title, year, director, duration, genre, rate, poster } = movie;
+    const { title, year, poster } = movie;
 
     const cardLink = document.createElement('a');
     cardLink.href = '';
@@ -7,42 +64,23 @@ function createMovieCard(movie) {
 
     const card = document.createElement('div');
     card.classList.add('movie-card');
-
-    const cardTitle = document.createElement('h3');
-    cardTitle.innerHTML = title;
-    cardTitle.classList.add('movie-title');
-    card.appendChild(cardTitle);
+    
+    const cardHeader = document.createElement('div');
+    cardHeader.innerHTML = `${title} (${year})`;
+    cardHeader.classList.add('movie-header');
+    card.appendChild(cardHeader);
     
     const cardImage = document.createElement('img');
     cardImage.src = poster;
     cardImage.alt = title;
     cardImage.classList.add('movie-image');
     card.appendChild(cardImage);
-
-    const cardYear = document.createElement('p');
-    cardYear.innerHTML = `Año: ${year}`;
-    cardYear.classList.add('movie-year');
-    card.appendChild(cardYear);
-
-    const cardDirector = document.createElement('p');
-    cardDirector.innerHTML = `Director: ${director}`;
-    cardDirector.classList.add('movie-director');
-    card.appendChild(cardDirector);
-
-    const cardDuration = document.createElement('p');
-    cardDuration.innerHTML = `Duración: ${duration}`;
-    cardDuration.classList.add('movie-duration');
-    card.appendChild(cardDuration);
-
-    const cardGenre = document.createElement('p');
-    cardGenre.innerHTML = `Géneros: ${genre.join(', ')}`;
-    cardGenre.classList.add('movie-genre');
-    card.appendChild(cardGenre);
-
-    const cardRate = document.createElement('p');
-    cardRate.innerHTML = `Calificación: ${rate}/10`;
-    cardRate.classList.add('movie-rate');
+    
+    const cardRate = createMovieRate(movie);
     card.appendChild(cardRate);
+    
+    const cardFooter = createMovieFooter(movie);
+    card.appendChild(cardFooter);
 
     cardLink.appendChild(card);
 
@@ -56,4 +94,4 @@ const cards = tempData.map(createMovieCard);
 
 cards.forEach(card => {
     cardContainer.appendChild(card);
-})
+});
