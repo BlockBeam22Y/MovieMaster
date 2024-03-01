@@ -27,6 +27,8 @@ nav ul {
 nav ul li a {
     padding: 2em 1em;
     display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 nav a:hover, nav a:active {
@@ -39,17 +41,43 @@ a:visited {
 
 main {
     width: 100vw;
+    min-height: calc(100vh - 8em);
     display: flex;
     flex-direction: column;
     padding: 1em;
+    gap: 1em;
     box-sizing: border-box;
     background-color: #eaeaea;
     color: #34495e;
 }
 
-.container-title {
+.subtitle {
     font-size: 2em;
     font-weight: 600;
+}
+
+section {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 1em;
+    gap: 1em;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 2px;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5em;
+}
+
+.section-title {
+    font-weight: 600;
+}
+
+.section-image {
+    width: 20em;
 }
 
 .movie-container {
@@ -68,6 +96,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: .5em;
     gap: .5em;
     background-color: #ffffff;
     color: #34495e;
@@ -99,21 +128,38 @@ main {
 
 .movie-image {
     width: 18em;
-    padding-bottom: .5em;
-}
-
-.movie-rate {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    gap: .5em;
 }
 
 .movie-footer {
     width: 16em;
-    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.movie-rate {
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+}
+
+.movie-description {
     text-align: center;
     text-wrap: wrap;
+}
+
+.movie-genre {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3px;
+}
+
+.genre-span {
+    background-color: #34495e;
+    color: #ffffff;
+    padding: 4px 5px;
+    font-size: 600;
 }
 
 .rate-label {

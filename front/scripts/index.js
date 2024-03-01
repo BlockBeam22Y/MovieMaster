@@ -4,11 +4,6 @@ function createMovieRate(movie) {
     const rateContainer = document.createElement('div');
     rateContainer.classList.add('movie-rate');
 
-    const rateLabel = document.createElement('p');
-    rateLabel.innerHTML = `${rate}/10`;
-    rateLabel.classList.add('rate-label');
-    rateContainer.appendChild(rateLabel);
-
     const rateBar = document.createElement('div');
     rateBar.classList.add('rate-bar');
 
@@ -28,28 +23,60 @@ function createMovieRate(movie) {
 
     rateContainer.appendChild(rateBar);
     
+    const rateLabel = document.createElement('p');
+    rateLabel.innerHTML = `${rate}/10`;
+    rateLabel.classList.add('rate-label');
+    rateContainer.appendChild(rateLabel);
+    
     return rateContainer;
 }
 
-function createMovieFooter(movie) {
-    const { director, duration, genre, rate } = movie;
+function createMovieDescription(movie) {
+    const { director, duration } = movie;
 
-    const cardFooter = document.createElement('div');
-    cardFooter.classList.add('movie-footer');
+    const cardDescription = document.createElement('div');
+    cardDescription.classList.add('movie-description');
 
     const cardDirector = document.createElement('p');
     cardDirector.innerHTML = `Director: ${director}`;
     cardDirector.classList.add('movie-director');
-    cardFooter.appendChild(cardDirector);
+    cardDescription.appendChild(cardDirector);
 
     const cardDuration = document.createElement('p');
     cardDuration.innerHTML = `Duración: ${duration}`;
     cardDuration.classList.add('movie-duration');
-    cardFooter.appendChild(cardDuration);
+    cardDescription.appendChild(cardDuration);
 
-    const cardGenre = document.createElement('p');
-    cardGenre.innerHTML = `Géneros: ${genre.join(', ')}`;
-    cardGenre.classList.add('movie-genre');
+    return cardDescription;
+}
+
+function createMovieGenre(movie) {
+    const { genre } = movie;
+    
+    const movieGenre = document.createElement('div');
+    movieGenre.classList.add('movie-genre');
+    
+    genre.forEach(g => {
+        const movieGenreSpan = document.createElement('span');
+        movieGenreSpan.innerHTML = g;
+        movieGenreSpan.classList.add('genre-span');
+        movieGenre.appendChild(movieGenreSpan);
+    });
+
+    return movieGenre;
+}
+
+function createMovieFooter(movie) {
+    const cardFooter = document.createElement('div');
+    cardFooter.classList.add('movie-footer');
+
+    const cardRate = createMovieRate(movie);
+    cardFooter.appendChild(cardRate);
+    
+    const cardDescription = createMovieDescription(movie);
+    cardFooter.appendChild(cardDescription);
+
+    const cardGenre = createMovieGenre(movie);
     cardFooter.appendChild(cardGenre);
 
     return cardFooter;
@@ -65,7 +92,7 @@ function createMovieCard(movie) {
     const card = document.createElement('div');
     card.classList.add('movie-card');
     
-    const cardHeader = document.createElement('div');
+    const cardHeader = document.createElement('h3');
     cardHeader.innerHTML = `${title} (${year})`;
     cardHeader.classList.add('movie-header');
     card.appendChild(cardHeader);
@@ -75,9 +102,6 @@ function createMovieCard(movie) {
     cardImage.alt = title;
     cardImage.classList.add('movie-image');
     card.appendChild(cardImage);
-    
-    const cardRate = createMovieRate(movie);
-    card.appendChild(cardRate);
     
     const cardFooter = createMovieFooter(movie);
     card.appendChild(cardFooter);
