@@ -111,11 +111,15 @@ function createMovieCard(movie) {
     return cardLink;
 }
 
-const cardContainer = document.querySelector('.movie-container');
-cardContainer.innerHTML = '';
+function displayCards(data) {
+    const cardContainer = document.querySelector('.movie-container');
+    cardContainer.innerHTML = '';
 
-const cards = tempData.map(createMovieCard);
+    const cards = data.map(createMovieCard);
 
-cards.forEach(card => {
-    cardContainer.appendChild(card);
-});
+    cards.forEach(card => {
+        cardContainer.appendChild(card);
+    });
+}
+
+$.get('https://students-api.2.us-1.fl0.io/movies', displayCards);
