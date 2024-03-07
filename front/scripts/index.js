@@ -10,22 +10,22 @@ function createMovieRate(movie) {
     const rateBarContent = document.createElement('div');
     rateBarContent.style.width = `${10 * rate}%`;
 
-    if (rate < 5) {
-        rateBarContent.style.backgroundColor = 'red';
-    } else if (rate < 7.5) {
-        rateBarContent.style.backgroundColor = 'yellow';
+    if (rate < 4) {
+        rateBarContent.classList.add('bg-danger');
+    } else if (rate < 7) {
+        rateBarContent.classList.add('bg-warning');
     } else {
-        rateBarContent.style.backgroundColor = 'green';
+        rateBarContent.classList.add('bg-success');
     }
 
-    rateBarContent.classList.add('bar-content');
+    rateBarContent.classList.add('h-100');
     rateBar.appendChild(rateBarContent);
 
     rateContainer.appendChild(rateBar);
     
     const rateLabel = document.createElement('p');
     rateLabel.innerHTML = `${rate}/10`;
-    rateLabel.classList.add('rate-label');
+    rateLabel.classList.add('m-0', 'font-weight-bold');
     rateContainer.appendChild(rateLabel);
     
     return rateContainer;
@@ -35,16 +35,16 @@ function createMovieDescription(movie) {
     const { director, duration } = movie;
 
     const cardDescription = document.createElement('div');
-    cardDescription.classList.add('movie-description');
+    cardDescription.classList.add('text-center', 'py-2');
 
     const cardDirector = document.createElement('p');
-    cardDirector.innerHTML = `Director: ${director}`;
-    cardDirector.classList.add('movie-director');
+    cardDirector.innerHTML = `<span class="font-weight-bold">Director:</span> ${director}`;
+    cardDirector.classList.add('card-text', 'm-0');
     cardDescription.appendChild(cardDirector);
 
     const cardDuration = document.createElement('p');
-    cardDuration.innerHTML = `Duración: ${duration}`;
-    cardDuration.classList.add('movie-duration');
+    cardDuration.innerHTML = `<span class="font-weight-bold">Duración:</span> ${duration}`;
+    cardDuration.classList.add('card-text', 'm-0');
     cardDescription.appendChild(cardDuration);
 
     return cardDescription;
@@ -59,7 +59,7 @@ function createMovieGenre(movie) {
     genre.forEach(g => {
         const movieGenreSpan = document.createElement('span');
         movieGenreSpan.innerHTML = g;
-        movieGenreSpan.classList.add('genre-span');
+        movieGenreSpan.classList.add('genre-span', 'p-1');
         movieGenre.appendChild(movieGenreSpan);
     });
 
@@ -68,7 +68,7 @@ function createMovieGenre(movie) {
 
 function createMovieFooter(movie) {
     const cardFooter = document.createElement('div');
-    cardFooter.classList.add('movie-footer');
+    cardFooter.classList.add('p-2');
 
     const cardRate = createMovieRate(movie);
     cardFooter.appendChild(cardRate);
@@ -94,13 +94,13 @@ function createMovieCard(movie) {
     
     const cardHeader = document.createElement('h3');
     cardHeader.innerHTML = `${title} (${year})`;
-    cardHeader.classList.add('movie-header');
+    cardHeader.classList.add('movie-header', 'px-3', 'py-2');
     card.appendChild(cardHeader);
     
     const cardImage = document.createElement('img');
     cardImage.src = poster;
     cardImage.alt = title;
-    cardImage.classList.add('movie-image');
+    cardImage.classList.add('card-img-top');
     card.appendChild(cardImage);
     
     const cardFooter = createMovieFooter(movie);
