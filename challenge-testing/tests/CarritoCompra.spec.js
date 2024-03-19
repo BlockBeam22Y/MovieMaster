@@ -13,6 +13,7 @@ describe('La clase CarritoCompra', () => {
     const carrito = new CarritoCompra();
 
     expect(Array.isArray(carrito.obtenerProductos())).toBe(true);
+    expect(carrito.obtenerProductos()).toHaveLength(0);
   });
 
   it('Debe tener definido el método agregarProducto', () => {
@@ -27,21 +28,21 @@ describe('La clase CarritoCompra', () => {
       cantidad: 5,
       precio: 10
     });
-    expect(carrito.obtenerProductos().length).toBe(1);
+    expect(carrito.obtenerProductos()).toHaveLength(1);
 
     carrito.agregarProducto({
       nombre: 'ProductoB',
       cantidad: 2,
       precio: 30
     });
-    expect(carrito.obtenerProductos().length).toBe(2);
+    expect(carrito.obtenerProductos()).toHaveLength(2);
 
     carrito.agregarProducto({
       nombre: 'ProductoC',
       cantidad: 4,
       precio: 20
     });
-    expect(carrito.obtenerProductos().length).toBe(3);
+    expect(carrito.obtenerProductos()).toHaveLength(3);
   });
 
   it('Debe tener definido el método calcularTotal', () => {
