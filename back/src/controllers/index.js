@@ -1,5 +1,14 @@
+const moviesService = require('../services/moviesService');
+
 module.exports = {
-  getMovies: (req, res) => {
-    res.status(200).send('Movie data available soon!');
-  }
+  getMovies: async (req, res) => {
+    try {
+      const movies = await moviesService.getMovies();
+      res.status(200).json(movies);
+    } catch (err) {
+      res.status(500).json({
+        error: 'Failed to fetch movies',
+      });
+    }
+  },
 };
