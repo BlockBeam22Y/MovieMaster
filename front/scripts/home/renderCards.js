@@ -1,4 +1,4 @@
-const createMovieCard = require('./createMovieCard');
+const createMovieCard = require('./movieCard/createCard');
 
 function renderCards(data) {
   const cardContainer = document.querySelector('.movie-container');

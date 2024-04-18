@@ -54,12 +54,72 @@
   </header>
 
   <main class="d-flex flex-column p-3">
-    <h2 class="m-0">Sobre este proyecto</h2>
+    <h2 class="m-0">Nueva película</h2>
+    
+    <form class="w-75">
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <input type="text" id="title" class="form-control" placeholder="Título">
+        </div>
+        
+        <div class="form-group col-md-4">
+          <input type="number" id="year" class="form-control" placeholder="Año">
+        </div>
+      </div>
+    
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" id="director" class="form-control" placeholder="Director">
+        </div>
+
+        <div class="form-group col-md-6">
+          <input type="text" id="duration" class="form-control" placeholder="Duración">
+        </div>
+      </div>
+    
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-8">
+          <div class="genre-container">
+            <ul class="genre-choices form-control m-0">
+              <li>
+                <input type="text" class="search-input" placeholder="Género">
+              </li>
+            </ul>
+
+            <div class="select-drop">
+              <ul class="genre-select list-group w-100"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col">
+          <input type="range" id="rate" class="form-control-range" min="0" max="9.9" step="0.1">
+        </div>
+
+        <div class="form-group col-auto">
+          <label class="m-0 px-3" id="rate-label">5.0</label>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <input type="text" id="poster" class="form-control" placeholder="Link del póster">
+      </div>
+      
+      <div class="form-row">
+        <button type="submit" id="submit-button" class="btn btn-dark">Enviar</button>
+
+        <button type="button" id="clear-button" class="btn btn-light ml-3">Limpiar</button>
+      </div>
+    </form>
+
+    <div class="validation-info"></div>
   </main>
 
   <footer class="p-3">
     <a href="https://github.com/pi-rym/PM2-BlockBeam22Y">2024, Rodrigo Flores</a>
   </footer>
+
+  <script src="./public/bundle.js"></script>
 </body>
 
 </html>

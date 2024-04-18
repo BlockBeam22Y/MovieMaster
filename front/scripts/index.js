@@ -1,7 +1,6 @@
-const axios = require('axios');
-const renderCards = require('./renderCards');
-const displayErrorAlert = require('./displayErrorAlert');
+const scripts = {
+  '/': require('./home'),
+  '/pages/new.html': require('./new')
+};
 
-axios.get('http://localhost:3000/movies')
-    .then(res => renderCards(res.data))
-    .catch(err => displayErrorAlert(err));
+scripts[location.pathname]();
