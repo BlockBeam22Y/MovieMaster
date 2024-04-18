@@ -16,7 +16,9 @@ function handleSelectGenre(data) {
       searchInput.placeholder = '';
 
       genreSelect.innerHTML = '';
-      genreSelect.append(...createOptionList(data, searchInput));
+      if (data.genre.length < 5) {
+        genreSelect.append(...createOptionList(data, searchInput));
+      }
     });
   });
 

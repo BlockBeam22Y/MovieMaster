@@ -4,7 +4,7 @@ function createMovieCard(movie) {
   const { title, year, poster } = movie;
 
   const cardLink = document.createElement('a');
-  cardLink.href = '';
+  cardLink.href = '#';
   cardLink.classList.add('movie-link');
 
   const card = document.createElement('div');

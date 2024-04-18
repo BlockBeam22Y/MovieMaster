@@ -1,3 +1,4 @@
+const axios = require('axios');
 const handleSelectGenre = require('./genreInput/handleSelect');
 const updateData = require('./updateData');
 const clearInputs = require('./clearInputs');
@@ -35,10 +36,14 @@ module.exports = function () {
         input.classList.add('is-invalid');
       })
       
-      displayValidationAlert({ message: 'Datos incorrectos' });
+      displayValidationAlert({ message: 'Datos inválidos' });
     } else {
-      clearInputs(inputs, data);
-      displayValidationAlert({ OK: true });
+      axios.post('http://localhost:3000/movies', data)
+        .then(res => {
+          clearInputs(inputs, data);
+          displayValidationAlert({ OK: true });
+        })
+        .catch(err => displayValidationAlert(err));
     }
   });
 
