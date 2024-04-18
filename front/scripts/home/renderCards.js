@@ -6,9 +6,13 @@ function renderCards(data) {
 
   const cards = data.map(createMovieCard);
 
-  cards.forEach(card => {
+  if (cards.length) {
+    cards.forEach(card => {
       cardContainer.appendChild(card);
-  });
+    });
+  } else {
+    cardContainer.innerHTML = 'No se encontraron películas';
+  }
 }
 
 module.exports = renderCards;

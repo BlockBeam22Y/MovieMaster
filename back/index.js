@@ -8,4 +8,6 @@ dbConnect().then(() => {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);
   });
+}).catch(err => {
+  console.error(err);
 });
